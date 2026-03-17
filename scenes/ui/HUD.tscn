@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://hud"]
+
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_hud"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 60.0
+text = "0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 48
+
+[node name="GameOverPanel" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -100.0
+offset_right = 120.0
+offset_bottom = 100.0
+alignment = 1
+visible = false
+
+[node name="GameOverLabel" type="Label" parent="GameOverPanel"]
+text = "GAME OVER"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 36
+
+[node name="FinalScoreLabel" type="Label" parent="GameOverPanel"]
+text = "Score: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
+[node name="RestartLabel" type="Label" parent="GameOverPanel"]
+text = "Press Space to Restart"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
