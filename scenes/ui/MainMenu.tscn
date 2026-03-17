@@ -32,3 +32,8 @@ theme_override_font_sizes/font_size = 48
 text = "Press Space to Start"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 24
+
+[node name="HighScoreLabel" type="Label" parent="VBoxContainer"]
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24

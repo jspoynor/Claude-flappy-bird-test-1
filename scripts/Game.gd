@@ -4,12 +4,14 @@ enum State { WAITING, PLAYING, GAME_OVER }
 
 var state := State.WAITING
 var score := 0
+var high_score := 0
 
 @onready var bird = $Bird
 @onready var hud = $HUD
 @onready var spawner = $PipeSpawner
 
 func _ready() -> void:
+	_load_high_score()
 	bird.auto_flap = true
 	spawner.active = false
 	hud.update_score(0)
@@ -32,7 +34,12 @@ func _start_game() -> void:
 
 func on_scored() -> void:
 	score += 1
-	hud.update_score(score)
+	if score > high_score:
+		high_score = score
+		_save_high_score()
+		hud.update_score(score, true)
+	else:
+		hud.update_score(score, false)
 
 func _on_bird_died() -> void:
 	if state == State.GAME_OVER:
@@ -40,4 +47,15 @@ func _on_bird_died() -> void:
 	state = State.GAME_OVER
 	bird.active = false
 	spawner.active = false
-	hud.show_game_over(score)
+	hud.show_game_over(score, high_score)
+
+func _load_high_score() -> void:
+	if FileAccess.file_exists("user://highscore.dat"):
+		var f = FileAccess.open("user://highscore.dat", FileAccess.READ)
+		high_score = f.get_32()
+		f.close()
+
+func _save_high_score() -> void:
+	var f = FileAccess.open("user://highscore.dat", FileAccess.WRITE)
+	f.store_32(high_score)
+	f.close()

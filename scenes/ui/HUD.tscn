@@ -52,6 +52,11 @@ text = "Score: 0"
 horizontal_alignment = 1
 theme_override_font_sizes/font_size = 24
 
+[node name="HighScoreLabel" type="Label" parent="GameOverPanel"]
+text = "Best: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+
 [node name="RestartLabel" type="Label" parent="GameOverPanel"]
 text = "Press Space to Restart"
 horizontal_alignment = 1
