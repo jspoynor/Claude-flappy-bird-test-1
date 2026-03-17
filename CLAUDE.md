@@ -60,3 +60,4 @@ res://
 ## Commit Discipline
 - **Before each prompt:** run `git status`; if there are uncommitted changes, commit them before proceeding.
 - **After each prompt:** once the work is complete, create a commit.
+- `git add`, `git commit`, and `git push` are always pre-approved — no need to prompt for confirmation.
