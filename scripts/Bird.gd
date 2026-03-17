@@ -5,8 +5,13 @@ signal died
 const GRAVITY = 1200.0
 const FLAP_FORCE = -400.0
 
+const WING_UP = preload("res://assets/sprites/unitytut-birdwingup.png")
+const WING_DOWN = preload("res://assets/sprites/unitytut-birdwingdown.png")
+
 var active := false
 var _dead := false
+
+@onready var _wing: Sprite2D = $WingSprite
 
 func _physics_process(delta: float) -> void:
 	if not active:
@@ -18,6 +23,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = FLAP_FORCE
 
 	move_and_slide()
+
+	# Swap wing texture based on vertical velocity
+	_wing.texture = WING_UP if velocity.y < 0 else WING_DOWN
 
 	# Died by hitting pipe or ground
 	if get_slide_collision_count() > 0:

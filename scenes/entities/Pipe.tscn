@@ -1,48 +1,57 @@
-[gd_scene load_steps=4 format=3 uid="uid://pipe"]
+[gd_scene format=3 uid="uid://pipe"]
 
-[ext_resource type="Script" path="res://scripts/Pipe.gd" id="1_pipe"]
+[ext_resource type="Script" uid="uid://ca7250dwd47gb" path="res://scripts/Pipe.gd" id="1_pipe"]
+[ext_resource type="Texture2D" uid="uid://dg58rj4tng6x2" path="res://assets/sprites/unitytut-pipe.png" id="2_pipe_tex"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(60.0, 320.0)
+size = Vector2(60, 647)
 
 [sub_resource type="RectangleShape2D" id="2"]
-size = Vector2(60.0, 320.0)
+size = Vector2(60, 641)
 
 [sub_resource type="RectangleShape2D" id="3"]
-size = Vector2(10.0, 150.0)
+size = Vector2(10, 150)
 
-[node name="Pipe" type="Node2D"]
+[node name="Pipe" type="Node2D" unique_id=483345605]
 script = ExtResource("1_pipe")
 
-[node name="TopBody" type="StaticBody2D" parent="."]
+[node name="TopBody" type="StaticBody2D" parent="." unique_id=135807163]
 position = Vector2(0, -235)
 
-[node name="Shape" type="CollisionShape2D" parent="TopBody"]
+[node name="Shape" type="CollisionShape2D" parent="TopBody" unique_id=100296386]
+position = Vector2(0, -163.5)
 shape = SubResource("1")
 
-[node name="Visual" type="ColorRect" parent="TopBody"]
-offset_left = -30.0
-offset_top = -160.0
-offset_right = 30.0
-offset_bottom = 160.0
-color = Color(0.2, 0.75, 0.2, 1)
+[node name="Visual" type="Sprite2D" parent="TopBody" unique_id=609254887]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_pipe_tex")
 
-[node name="BottomBody" type="StaticBody2D" parent="."]
+[node name="Visual2" type="Sprite2D" parent="TopBody" unique_id=1343964331]
+position = Vector2(0, -326)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_pipe_tex")
+flip_v = true
+
+[node name="BottomBody" type="StaticBody2D" parent="." unique_id=409420733]
 position = Vector2(0, 235)
 
-[node name="Shape" type="CollisionShape2D" parent="BottomBody"]
+[node name="Shape" type="CollisionShape2D" parent="BottomBody" unique_id=305950802]
+position = Vector2(0, 160.5)
 shape = SubResource("2")
 
-[node name="Visual" type="ColorRect" parent="BottomBody"]
-offset_left = -30.0
-offset_top = -160.0
-offset_right = 30.0
-offset_bottom = 160.0
-color = Color(0.2, 0.75, 0.2, 1)
+[node name="Visual" type="Sprite2D" parent="BottomBody" unique_id=1245655085]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_pipe_tex")
+flip_v = true
 
-[node name="ScoreZone" type="Area2D" parent="."]
+[node name="Visual2" type="Sprite2D" parent="BottomBody" unique_id=1033074613]
+position = Vector2(0, 310)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_pipe_tex")
 
-[node name="Shape" type="CollisionShape2D" parent="ScoreZone"]
+[node name="ScoreZone" type="Area2D" parent="." unique_id=109601707]
+
+[node name="Shape" type="CollisionShape2D" parent="ScoreZone" unique_id=1335195094]
 shape = SubResource("3")
 
 [connection signal="body_entered" from="ScoreZone" to="." method="_on_score_zone_body_entered"]
