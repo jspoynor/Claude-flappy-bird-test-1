@@ -12,3 +12,6 @@ func show_game_over(score: int) -> void:
 
 func hide_game_over() -> void:
 	$GameOverPanel.visible = false
+
+func hide_start_prompt() -> void:
+	$StartPromptLabel.visible = false

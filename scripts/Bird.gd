@@ -4,17 +4,27 @@ signal died
 
 const GRAVITY = 1200.0
 const FLAP_FORCE = -400.0
+const AUTO_FLAP_TARGET_Y = 380.0
 
 const WING_UP = preload("res://assets/sprites/unitytut-birdwingup.png")
 const WING_DOWN = preload("res://assets/sprites/unitytut-birdwingdown.png")
 
 var active := false
+var auto_flap := false
 var _dead := false
 var _ragdoll := false
 
 @onready var _wing: Sprite2D = $WingSprite
 
 func _physics_process(delta: float) -> void:
+	if auto_flap:
+		velocity.y += GRAVITY * delta
+		if position.y > AUTO_FLAP_TARGET_Y:
+			velocity.y = FLAP_FORCE
+		move_and_slide()
+		_wing.texture = WING_UP if velocity.y < 0 else WING_DOWN
+		return
+
 	if not active and not _ragdoll:
 		return
 
