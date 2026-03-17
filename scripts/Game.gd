@@ -14,7 +14,10 @@ func _ready() -> void:
 	_load_high_score()
 	bird.auto_flap = true
 	spawner.active = false
-	hud.update_score(0)
+	if high_score > 0:
+		hud.update_score(high_score, true)
+	else:
+		hud.update_score(0)
 	bird.died.connect(_on_bird_died)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -24,6 +27,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 
 func _start_game() -> void:
+	hud.update_score(0)
 	state = State.PLAYING
 	bird.auto_flap = false
 	bird.active = true
