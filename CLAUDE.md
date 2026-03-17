@@ -56,3 +56,7 @@ res://
 - `load_steps` in `.tscn` header = number of ext_resources + sub_resources + 1.
 - No binary assets used — all visuals are `ColorRect` placeholders.
 - Cannot run the game to verify; user must test in Godot and report errors.
+
+## Commit Discipline
+- **Before each prompt:** run `git status`; if there are uncommitted changes, commit them before proceeding.
+- **After each prompt:** once the work is complete, create a commit.
