@@ -10,11 +10,19 @@ const WING_DOWN = preload("res://assets/sprites/unitytut-birdwingdown.png")
 
 var active := false
 var _dead := false
+var _ragdoll := false
 
 @onready var _wing: Sprite2D = $WingSprite
 
 func _physics_process(delta: float) -> void:
-	if not active:
+	if not active and not _ragdoll:
+		return
+
+	if _ragdoll:
+		velocity.y += GRAVITY * delta
+		rotation += 3.0 * delta
+		_wing.texture = WING_DOWN
+		move_and_slide()
 		return
 
 	velocity.y += GRAVITY * delta
@@ -39,4 +47,5 @@ func _kill() -> void:
 	if _dead:
 		return
 	_dead = true
+	_ragdoll = true
 	emit_signal("died")
