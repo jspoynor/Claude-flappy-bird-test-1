@@ -25,8 +25,10 @@ func _start_game() -> void:
 	state = State.PLAYING
 	bird.auto_flap = false
 	bird.active = true
-	spawner.active = true
 	hud.hide_start_prompt()
+	await get_tree().create_timer(1.5).timeout
+	if state == State.PLAYING:
+		spawner.active = true
 
 func on_scored() -> void:
 	score += 1
